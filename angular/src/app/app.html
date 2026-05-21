@@ -186,6 +186,12 @@
 
 <main class="main">
   <div class="content">
+
+    <button (click)="clicked()">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</button>
+    <h1>Hello, {{ title() }}</h1>
+    <p>{{ result() }}</p>
+    <p>Congratulations!! Your app is running. 🎉</p>
+
     <div class="left-side">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -233,6 +239,7 @@
         </defs>
       </svg>
       <h1>Hello, {{ title() }}</h1>
+      <p>{{ result() }}</p>
       <p>Congratulations!! Your app is running. 🎉</p>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
@@ -287,7 +294,9 @@
             />
           </svg>
         </a>
-        <a
+
+
+     <a
           href="https://x.com/angular"
           aria-label="X"
           target="_blank"
