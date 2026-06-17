@@ -12,20 +12,8 @@
 	<artifactId>login-form</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>login-form</name>
-	<description/>
 	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	<developers/>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
