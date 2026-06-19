@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <body>
 <h2>Home</h2>
+<p>Signed in as <span th:text="${#authentication.name}">user</span></p>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Log out</button>
+  </form>
 </body>
 </html>

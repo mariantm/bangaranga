@@ -18,19 +18,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/css/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .formLogin(form -> form
-                .loginPage("/login")          // your custom login page
-                .defaultSuccessUrl("/home", true)
-                .permitAll()
-            )
-            .logout(logout -> logout
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
-            );
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login", "/css/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")          // your custom login page
+                        .defaultSuccessUrl("/home", true)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")                 // explicit; matches POST /logout
+                        .logoutSuccessUrl("/login?logout")    // where to land after logout
+                        .invalidateHttpSession(true)          // destroy the server-side HTTP session
+                        .clearAuthentication(true)            // clear the SecurityContext
+                        .deleteCookies("JSESSIONID")          // remove the session cookie from the browser
+                        .permitAll()
+                );
         return http.build();
     }
 
@@ -44,10 +48,10 @@ public class SecurityConfig {
         // In-memory user for demo; replace with DB-backed UserDetailsService.
         // Password is BCrypt-hashed at startup via the injected encoder.
         var user = User.builder()
-            .username("admin")
-            .password(encoder.encode("password"))
-            .roles("USER")
-            .build();
+                .username("admin")
+                .password(encoder.encode("password"))
+                .roles("USER")
+                .build();
         return new InMemoryUserDetailsManager(user);
     }
 }
